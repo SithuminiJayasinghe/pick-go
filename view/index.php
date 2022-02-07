@@ -4,7 +4,7 @@
 <?php 
 	if(!isset($_SESSION['login_id']))
 	    header('location:login.php');
-    include 'db_connect.php';
+    include '../model/db_connect.php';
     ob_start();
 
   ob_end_flush();

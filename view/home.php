@@ -1,4 +1,4 @@
-<?php include('db_connect.php') ?>
+<?php include('../model/db_connect.php') ?>
 <?php
 $twhere ="";
 if($_SESSION['login_type'] != 1)

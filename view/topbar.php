@@ -28,7 +28,7 @@
               </span>
             </a>
             <div class="dropdown-menu" aria-labelledby="account_settings" style="left: -2.5em;">
-              <a class="dropdown-item" href="ajax.php?action=logout"><i class="fa fa-power-off"></i> Logout</a>
+              <a class="dropdown-item" href="../controller/ajax.php?action=logout"><i class="fa fa-power-off"></i> Logout</a>
             </div>
       </li>
     </ul>

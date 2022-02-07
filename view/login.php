@@ -2,7 +2,7 @@
 <html lang="en">
 <?php 
 session_start();
-include('./db_connect.php');
+include('../model/db_connect.php');
   ob_start();
   ob_end_flush();
 ?>
@@ -58,7 +58,7 @@ header("location:index.php?page=home");
     if($(this).find('.alert-danger').length > 0 )
       $(this).find('.alert-danger').remove();
     $.ajax({
-      url:'ajax.php?action=login',
+      url:'../controller/ajax.php?action=login',
       method:'POST',
       data:$(this).serialize(),
       error:err=>{

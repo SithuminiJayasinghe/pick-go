@@ -6,7 +6,7 @@ Class Action {
 
 	public function __construct() {
 		ob_start();
-   	include 'db_connect.php';
+   	include '../model/db_connect.php';
     
     $this->db = $conn;
 	}
@@ -33,7 +33,7 @@ Class Action {
 		foreach ($_SESSION as $key => $value) {
 			unset($_SESSION[$key]);
 		}
-		header("location:login.php");
+		header("location:../view/login.php");
 	}	
 
 }

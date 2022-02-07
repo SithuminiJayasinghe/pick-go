@@ -36,4 +36,14 @@ Class Action {
 		header("location:../view/login.php");
 	}	
 
+
+	function update_parcel(){
+		extract($_POST);
+		$update = $this->db->query("UPDATE parcels set status= $status where id = $id");
+		$save = $this->db->query("INSERT INTO parcel_tracks set status= $status , parcel_id = $id");
+		if($update && $save)
+			return 1;  
+	}
+
+
 }

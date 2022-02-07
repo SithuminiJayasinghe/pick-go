@@ -16,6 +16,12 @@ if($action == 'logout'){
 		echo $logout;
 }
 
+if($action == 'update_parcel'){
+	$save = $crud->update_parcel();
+	if($save)
+		echo $save;
+}
+
 
 ob_end_flush();
 ?>

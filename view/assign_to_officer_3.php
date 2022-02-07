@@ -12,12 +12,32 @@
         <div id="msg" class=""></div>
         <div class="row">
           <div class="col-md-6">
-              <h4>Sender's Information</h4>
+              <h4>Assign Pickup</h4>
+
+              <br>
+              <div class="col-sm-6 form-group ">
+                <label for="" class="control-label">Assign to Officer</label>
+                <select name="assign_officer" id="" class="form-control input-sm select2">
+                  <option value=""></option>
+
+                </select>
+              </div>
+
               <div class="form-group">
-                <label for="" class="control-label">Name</label>
-                <input type="text" name="sender_name" id="" class="form-control form-control-sm" value="<?php echo isset($sender_name) ? $sender_name : '' ?>" required>
+                <label for="" class="control-label">Pickup date</label>
+                <input type="text" name="assign_officer" id="" class="form-control form-control-sm" value="<?php echo isset($assign_officer) ? $assign_officer : '' ?>" required>
               </div>
               <div class="form-group">
+                <label for="" class="control-label">Pickup time: From</label>
+                <input type="datetime" name="assign_officer" id="" class="form-control form-control-sm" value="<?php echo isset($assign_officer) ? $assign_officer : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">Pickup time: To</label>
+                <input type="text" name="assign_officer" id="" class="form-control form-control-sm" value="<?php echo isset($assign_officer) ? $assign_officer : '' ?>" required>
+              </div>
+
+
+              <!-- <div class="form-group">
                 <label for="" class="control-label">Address</label>
                 <input type="text" name="sender_address" id="" class="form-control form-control-sm" value="<?php echo isset($sender_address) ? $sender_address : '' ?>" required>
               </div>
@@ -50,17 +70,17 @@
                 <label for="" class="control-label">Remarks</label>
                 <input type="text" name="sender_remarks" id="" class="form-control form-control-sm" value="<?php echo isset($sender_remarks) ? $sender_remarks : '' ?>" required>
               </div>
-              
+               -->
 
 
           </div>
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
               <h4>Recipient's Information</h4>
               <div class="form-group">
                 <label for="" class="control-label">Name</label>
                 <input type="text" name="recipient_name" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_name) ? $recipient_name : '' ?>" required>
-              </div>
-              <div class="form-group">
+              </div> -->
+              <!-- <div class="form-group">
                 <label for="" class="control-label">Address</label>
                 <input type="text" name="recipient_address" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_address) ? $recipient_address : '' ?>" required>
               </div>
@@ -88,16 +108,16 @@
                 <label for="" class="control-label">Available time for delivery</label>
                 <input type="text" name="sender_available_time_for_delivery_from" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_time_for_delivery_from) ? $sender_available_time_for_delivery_from : '' ?>" required>
                 <input type="text" name="sender_available_time_for_delivery_to" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_time_for_delivery_to) ? $sender_available_time_for_delivery_to : '' ?>" required>
-              </div>
-              <div class="form-group">
+              </div> -->
+              <!-- <div class="form-group">
                 <label for="" class="control-label">Remarks</label>
                 <input type="text" name="sender_remarks" id="" class="form-control form-control-sm" value="<?php echo isset($sender_remarks) ? $sender_remarks : '' ?>" required>
-              </div>              
-          </div>
+              </div>               -->
+          <!-- </div> -->
         </div>
         <br>
         <br>
-        <h4>Item Information</h4>
+        <!-- <h4>Item Information</h4>
         <table class="table table-bordered" id="parcel-items">
           <thead>
             <tr>
@@ -141,12 +161,12 @@
             <button  class="btn btn-sm btn-primary bg-gradient-primary" type="button" id="new_parcel"><i class="fa fa-item"></i> Add Item</button>
           </div>
         </div>
-              <?php endif; ?>
+              <?php endif; ?> -->
       </form>
   	</div>
   	<div class="card-footer border-top border-info">
   		<div class="d-flex w-100 justify-content-center align-items-center">
-  			<button class="btn btn-flat  bg-gradient-primary mx-2" form="manage-parcel">Save</button>
+  			<button class="btn btn-flat  bg-gradient-primary mx-2" form="manage-parcel">Assign</button>
   			<a class="btn btn-flat bg-gradient-secondary mx-2" href="./index.php?page=parcel_list">Cancel</a>
   		</div>
   	</div>

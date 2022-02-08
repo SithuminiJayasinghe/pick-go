@@ -149,7 +149,7 @@
         <h4>Item Information</h4>
         <table class="table table-bordered" id="parcel-items">
           <thead>
-            <tr>
+            <tr>            
               <th>Weight</th>
               <th>Height</th>
               <th>Length</th>

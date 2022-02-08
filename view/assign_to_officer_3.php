@@ -17,23 +17,32 @@
               <br>
               <div class="col-sm-6 form-group ">
                 <label for="" class="control-label">Assign to Officer</label>
-                <select name="assign_officer" id="" class="form-control input-sm select2">
-                  <option value=""></option>
-
-                </select>
+                <div class="form-group">
+                  <div class="form-group" id="tbi-field">
+                    <select name="recipient_nearest_center" id="recipient_nearest_center" class="form-control select2">
+                      <option value=""></option>
+                        <?php 
+                          $branches = $conn->query("SELECT * FROM systemusers where type=2 ");
+                          while($row = $branches->fetch_assoc()):
+                        ?>
+                        <option value="<?php echo $row['system_user_id'] ?>" <?php echo isset($system_user_id) && $system_user_id == $row['system_user_id'] ? "selected":'' ?>><?php echo $row['firstname'] ?></option>
+                      <?php endwhile; ?>
+                    </select>
+                  </div> 
+                </div>
               </div>
 
               <div class="form-group">
                 <label for="" class="control-label">Pickup date</label>
-                <input type="text" name="assign_officer" id="" class="form-control form-control-sm" value="<?php echo isset($assign_officer) ? $assign_officer : '' ?>" required>
+                <input type="date" name="assigned_pickup_date" id="" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_date) ? $assigned_pickup_date : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Pickup time: From</label>
-                <input type="datetime" name="assign_officer" id="" class="form-control form-control-sm" value="<?php echo isset($assign_officer) ? $assign_officer : '' ?>" required>
+                <input type="time" name="assigned_pickup_time_from" id="" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_time_from) ? $assigned_pickup_time_from : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Pickup time: To</label>
-                <input type="text" name="assign_officer" id="" class="form-control form-control-sm" value="<?php echo isset($assign_officer) ? $assign_officer : '' ?>" required>
+                <input type="time" name="assigned_pickup_time_to" id="" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_time_to) ? $assigned_pickup_time_to : '' ?>" required>
               </div>
 
 

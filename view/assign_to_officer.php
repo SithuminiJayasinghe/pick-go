@@ -32,17 +32,18 @@
 					<?php
 					$i = 1;
 					$where = "";
-					if(isset($_GET['s'])){
-						$where = " where status = {$_GET['s']} ";
-					}
+					// if(isset($_GET['s'])){
+					// 	$where = " where status = {$_GET['s']} ";
+					// }
 					if($_SESSION['login_type'] != 1 ){
 						if(empty($where))
 							$where = " where ";
 						else
 							$where .= " and ";
-						$where .= " (from_branch_id = {$_SESSION['login_branch_id']} or to_branch_id = {$_SESSION['login_branch_id']}) ";
+						$where .= "sender_nearest_center = {$_SESSION['login_center_id'] } ";
 					}
-					$qry = $conn->query("SELECT * from goods $where order by  unix_timestamp(date_created) desc ");
+
+					$qry = $conn->query("SELECT * from goods order by date_created DESC");
 					while($row= $qry->fetch_assoc()):
 					?>
 					<tr>

@@ -1,4 +1,4 @@
-<?php if(!isset($conn)){ include 'db_connect.php'; } ?>
+<?php if(!isset($conn)){ include '../model/db_connect.php'; } ?>
 <style>
   textarea{
     resize: none;
@@ -21,41 +21,64 @@
                 <label for="" class="control-label">Address</label>
                 <input type="text" name="sender_address" id="" class="form-control form-control-sm" value="<?php echo isset($sender_address) ? $sender_address : '' ?>" required>
               </div>
+
+
               <div class="form-group">
-                <label for="" class="control-label">Nearest City</label>
-                <input type="text" name="sender_nearest_city" id="" class="form-control form-control-sm" value="<?php echo isset($sender_nearest_city) ? $sender_nearest_city : '' ?>" required>
+                <div class="form-group" id="fbi-field">
+                  <label for="" class="control-label">Sender's Nearest City</label>
+                    <select name="sender_nearest_city" id="sender_nearest_city" class="form-control select2" required="">
+                      <option value=""></option>
+                        <?php 
+                          $branches = $conn->query("SELECT *,concat(city_id,city_name) as address FROM cities");
+                          while($row = $branches->fetch_assoc()):
+                        ?>
+                      <option value="<?php echo $row['city_id'] ?>" <?php echo isset($sender_nearest_city) && $sender_nearest_city == $row['city_id'] ? "selected":'' ?>><?php echo $row['city_id']. ' | '.(ucwords($row['address'])) ?></option>
+                    <?php endwhile; ?>
+                    </select>
+                </div>
               </div>
+              
               <div class="form-group">
                 <label for="" class="control-label">Email</label>
                 <input type="text" name="sender_email" id="" class="form-control form-control-sm" value="<?php echo isset($sender_email) ? $sender_email : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Contact No:</label>
-                <input type="text" name="sender_contact" id="" class="form-control form-control-sm" value="<?php echo isset($sender_contact) ? $sender_contact : '' ?>" required>
+                <input type="text" name="sender_contact_no" id="" class="form-control form-control-sm" value="<?php echo isset($sender_contact_no) ? $sender_contact_no : '' ?>" required>
               </div>
+
               <div class="form-group">
-                <label for="" class="control-label">Nearest Operational Center</label>
-                <input type="text" name="sender_nearest_operational_center" id="" class="form-control form-control-sm" value="<?php echo isset($sender_nearest_operational_center) ? $sender_nearest_operational_center : '' ?>" required>
+                <div class="form-group" id="fbi-field">
+                  <label for="" class="control-label">Sender's Nearest Operational Center</label>
+                    <select name="sender_nearest_center" id="sender_nearest_center" class="form-control select2" required="">
+                      <option value=""></option>
+                        <?php 
+                          $branches = $conn->query("SELECT *,concat(center_code,', ',city) as address FROM center");
+                          while($row = $branches->fetch_assoc()):
+                        ?>
+                      <option value="<?php echo $row['center_id'] ?>" <?php echo isset($sender_nearest_center) && $sender_nearest_center == $row['center_id'] ? "selected":'' ?>><?php echo $row['center_code']. ' | '.(ucwords($row['address'])) ?></option>
+                    <?php endwhile; ?>
+                    </select>
+                </div>
               </div>
+
               <div class="form-group">
                 <label for="" class="control-label">Available date for pickup</label>
-                <input type="text" name="sender_available_date_for_pickup" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_date_for_pickup) ? $sender_available_date_for_pickup : '' ?>" required>
+                <input type="date" name="sender_available_date" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_date) ? $sender_available_date : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Available time for pickup</label>
-                <input type="text" name="sender_available_time_for_pickup_from" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_time_for_pickup_from) ? $sender_available_time_for_pickup_from : '' ?>" required>
-                <input type="text" name="sender_available_time_for_pickup_to" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_time_for_pickup_to) ? $sender_available_time_for_pickup_to : '' ?>" required>
+                <input type="time" placeholder="From" name="sender_available_time_from" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_time_from) ? $sender_available_time_from : '' ?>" required>
+                <br>
+                <input type="time" placeholder="To" name="sender_available_time_to" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_time_to) ? $sender_available_time_to : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Remarks</label>
                 <input type="text" name="sender_remarks" id="" class="form-control form-control-sm" value="<?php echo isset($sender_remarks) ? $sender_remarks : '' ?>" required>
               </div>
-              
-
-
           </div>
           <div class="col-md-6">
-              <h4>Recipient's Information</h4>
+              <h4>Receiver's Informration</h4>
               <div class="form-group">
                 <label for="" class="control-label">Name</label>
                 <input type="text" name="recipient_name" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_name) ? $recipient_name : '' ?>" required>
@@ -63,46 +86,70 @@
               <div class="form-group">
                 <label for="" class="control-label">Address</label>
                 <input type="text" name="recipient_address" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_address) ? $recipient_address : '' ?>" required>
-              </div>
+                          </div>
+
               <div class="form-group">
-                <label for="" class="control-label">Nearest City</label>
-                <input type="text" name="sender_nearest_city" id="" class="form-control form-control-sm" value="<?php echo isset($sender_nearest_city) ? $sender_nearest_city : '' ?>" required>
+                <div class="form-group" id="fbi-field">
+                  <label for="" class="control-label">Recipient's Nearest City</label>
+                    <select name="recipient_nearest_city" id="recipient_nearest_city" class="form-control select2" required="">
+                      <option value=""></option>
+                        <?php 
+                          $branches = $conn->query("SELECT *,concat(city_id,city_name) as address FROM cities");
+                          while($row = $branches->fetch_assoc()):
+                        ?>
+                      <option value="<?php echo $row['city_id'] ?>" <?php echo isset($recipient_nearest_city) && $recipient_nearest_city == $row['city_id'] ? "selected":'' ?>><?php echo $row['city_id']. ' | '.(ucwords($row['address'])) ?></option>
+                    <?php endwhile; ?>
+                    </select>
+                </div>
               </div>
+
               <div class="form-group">
                 <label for="" class="control-label">Email</label>
-                <input type="text" name="sender_email" id="" class="form-control form-control-sm" value="<?php echo isset($sender_email) ? $sender_email : '' ?>" required>
+                <input type="text" name="recipient_email" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_email) ? $recipient_email : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Contact No:</label>
-                <input type="text" name="sender_contact" id="" class="form-control form-control-sm" value="<?php echo isset($sender_contact) ? $sender_contact : '' ?>" required>
+                <input type="text" name="recipient_contact_no" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_contact_no) ? $recipient_contact_no : '' ?>" required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-group" id="tbi-field">
+                  <label for="" class="control-label">Recipient's Nearest Operational Center</label>
+                    <select name="recipient_nearest_center" id="recipient_nearest_center" class="form-control select2">
+                      <option value=""></option>
+                        <?php 
+                          $branches = $conn->query("SELECT *,concat(center_code,', ',city) as address FROM center");
+                          while($row = $branches->fetch_assoc()):
+                        ?>
+                        <option value="<?php echo $row['center_id'] ?>" <?php echo isset($recipient_nearest_center) && $recipient_nearest_center == $row['center_id'] ? "selected":'' ?>><?php echo $row['center_code']. ' | '.(ucwords($row['address'])) ?></option>
+                      <?php endwhile; ?>
+                    </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="" class="control-label">Available date for pickup</label>
+                <input type="date" name="recipient_available_date" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_available_date) ? $recipient_available_date : '' ?>" required>
               </div>
               <div class="form-group">
-                <label for="" class="control-label">Nearest Operational Center</label>
-                <input type="text" name="sender_nearest_operational_center" id="" class="form-control form-control-sm" value="<?php echo isset($sender_nearest_operational_center) ? $sender_nearest_operational_center : '' ?>" required>
-              </div>
-              <div class="form-group">
-                <label for="" class="control-label">Available date for delivery</label>
-                <input type="text" name="sender_available_date_for_pickup" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_date_for_pickup) ? $sender_available_date_for_pickup : '' ?>" required>
-              </div>
-              <div class="form-group">
-                <label for="" class="control-label">Available time for delivery</label>
-                <input type="text" name="sender_available_time_for_delivery_from" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_time_for_delivery_from) ? $sender_available_time_for_delivery_from : '' ?>" required>
-                <input type="text" name="sender_available_time_for_delivery_to" id="" class="form-control form-control-sm" value="<?php echo isset($sender_available_time_for_delivery_to) ? $sender_available_time_for_delivery_to : '' ?>" required>
+                <label for="" class="control-label">Available time for pickup</label>
+                <input type="time" placeholder="From" name="recipient_available_time_from" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_available_time_from) ? $recipient_available_time_from : '' ?>" required>
+                <br>
+                <input type="time" placeholder="To" name="recipient_available_time_to" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_available_time_to) ? $recipient_available_time_to : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Remarks</label>
-                <input type="text" name="sender_remarks" id="" class="form-control form-control-sm" value="<?php echo isset($sender_remarks) ? $sender_remarks : '' ?>" required>
-              </div>              
+                <input type="text" name="recipient_remarks" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+              </div>
+
           </div>
         </div>
-        <br>
-        <br>
+        <hr>
+     
         <h4>Item Information</h4>
         <table class="table table-bordered" id="parcel-items">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Type</th>
               <th>Weight</th>
               <th>Height</th>
               <th>Length</th>
@@ -115,8 +162,6 @@
           </thead>
           <tbody>
             <tr>
-              <td><input type="text" name='name' value="<?php echo isset($name) ? $name :'' ?>" required></td>
-              <td><input type="text" name='type' value="<?php echo isset($type) ? $type :'' ?>" required></td>
               <td><input type="text" name='weight[]' value="<?php echo isset($weight) ? $weight :'' ?>" required></td>
               <td><input type="text" name='height[]' value="<?php echo isset($height) ? $height :'' ?>" required></td>
               <td><input type="text" name='length[]' value="<?php echo isset($length) ? $length :'' ?>" required></td>
@@ -199,7 +244,7 @@
       return false;
     }
 		$.ajax({
-			url:'controller/ajax.php?action=save_parcel',
+			url:'../controller/ajax.php?action=save_parcel',
 			data: new FormData($(this)[0]),
 		    cache: false,
 		    contentType: false,
@@ -215,6 +260,7 @@
       //         var nw = window.open('print_pdets.php?ids='+resp.ids,"_blank","height=700,width=900")
       //       }
 			// }
+      // alert(resp)
         if(resp == 1){
             alert_toast('Data successfully saved',"success");
             setTimeout(function(){

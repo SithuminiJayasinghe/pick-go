@@ -15,7 +15,11 @@ if($action == 'logout'){
 	if($logout)
 		echo $logout;
 }
-
+if($action == 'save_parcel'){
+	$save = $crud->save_parcel();
+	if($save)
+		echo $save;
+}
 if($action == 'update_parcel'){
 	$save = $crud->update_parcel();
 	if($save)

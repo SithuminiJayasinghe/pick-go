@@ -49,8 +49,53 @@
             
             </ul>
           </li>
-
           <?php endif; ?>
+
+          <?php if($_SESSION['login_type'] == 1): ?>
+          <li class="nav-item">
+            <a href="#" class="nav-link nav-edit_parcel">
+              <i class="nav-icon fas fa-boxes"></i>
+              <p>
+                Admin
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./index.php?page=customer_pickup_request" class="nav-link nav-new tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p> Assign Pickup Request</p>
+                </a>
+              </li>
+            
+            </ul>
+          </li>
+          <?php endif; ?>
+
+
+          <?php if($_SESSION['login_type'] == 2): ?>
+          <li class="nav-item">
+            <a href="#" class="nav-link nav-edit_parcel">
+              <i class="nav-icon fas fa-boxes"></i>
+              <p>
+                Staff
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./index.php?page=customer_pickup_request" class="nav-link nav-new tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p> View Assigned Requests</p>
+                </a>
+              </li>
+            
+            </ul>
+          </li>
+          <?php endif; ?>
+
+
+
             
         </ul>
       </nav>

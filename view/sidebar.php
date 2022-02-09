@@ -64,7 +64,7 @@
               <li class="nav-item">
                 <a href="./index.php?page=customer_pickup_request" class="nav-link nav-new tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p> Assign Pickup Request</p>
+                  <p> Pickup Request </p>
                 </a>
               </li>
             
@@ -84,7 +84,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.php?page=customer_pickup_request" class="nav-link nav-new tree-item">
+                <a href="./index.php?page=assign_to_officer" class="nav-link nav-new tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p> View Assigned Requests</p>
                 </a>

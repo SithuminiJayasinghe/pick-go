@@ -25,6 +25,11 @@ if($action == 'update_parcel'){
 	if($save)
 		echo $save;
 }
+if($action == 'get_distance'){
+	$get = $crud->get_distance();
+	if($get)
+		echo $get;
+}
 
 
 ob_end_flush();

@@ -139,7 +139,8 @@
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Remarks</label>
-                <input type="text" name="recipient_remarks" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+                
               </div>
 
           </div>
@@ -165,7 +166,7 @@
               <td><input type="text" name='weight[]' value="<?php echo isset($weight) ? $weight :'' ?>" required></td>
               <td><input type="text" name='height[]' value="<?php echo isset($height) ? $height :'' ?>" required></td>
               <td><input type="text" name='length[]' value="<?php echo isset($length) ? $length :'' ?>" required></td>
-              <td><input type="text" name='width[]' value="<?php echo isset($width) ? $width :'' ?>" required></td>
+              <td><input type="text" name='width[]' onkeypress="getDistance()" value="<?php echo isset($width) ? $width :'' ?>" required></td>
               <td><input type="text" class="text-right number" name='price[]' value="<?php echo isset($price) ? $price :'' ?>" required></td>
               <?php if(!isset($id)): ?>
               <td><button class="btn btn-sm btn-danger" type="button" onclick="$(this).closest('tr').remove() && calc()"><i class="fa fa-times"></i></button></td>
@@ -204,7 +205,7 @@
         <td><input type="text" name='height[]' required></td>
         <td><input type="text" name='length[]' required></td>
         <td><input type="text" name='width[]' required></td>
-        <td><input type="text" class="text-right number" name='price[]' required></td>
+        <td><input type="text" class="text-right number" name='price[]'  required></td>
         <td><button class="btn btn-sm btn-danger" type="button" onclick="$(this).closest('tr').remove() && calc()"><i class="fa fa-times"></i></button></td>
       </tr>
   </table>
@@ -281,6 +282,32 @@
           reader.readAsDataURL(input.files[0]);
       }
   }
+  function getDistance(){
+    var city_a = $('#sender_nearest_city').val();
+    var city_b = $('#recipient_nearest_city').val();
+    var total = 0.00;
+    $.ajax({
+			url:'../controller/ajax.php?action=get_distance',
+		    // cache: false,
+		    // contentType: false,
+		    // processData: false,
+		    method: 'POST',
+        data:{city_a:city_a,city_b:city_b},
+		    type: 'POST',
+			success:function(resp){
+        resp = JSON.parse(resp)
+						if(Object.keys(resp).length > 0){
+
+              // alert(resp[0].distance);
+              total = resp[0].distance * 5;
+              $('#tAmount').text(parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
+		
+						}
+			}
+		})
+
+  }
+
   function calc(){
 
         var total = 0 ;
@@ -290,6 +317,35 @@
               p = p > 0 ? p : 0;
             total = parseFloat(p) + parseFloat(total)
          })
+
+         $.ajax({
+			url:'../controller/ajax.php?action=get_distance',
+			data: new FormData($(this)[0]),
+		    cache: false,
+		    contentType: false,
+		    processData: false,
+		    method: 'POST',
+		    type: 'POST',
+			success:function(resp){
+			// if(resp){
+      //       resp = JSON.parse(resp)
+      //       if(resp.status == 1){
+      //         alert_toast('Data successfully saved',"success");
+      //         end_load()
+      //         var nw = window.open('print_pdets.php?ids='+resp.ids,"_blank","height=700,width=900")
+      //       }
+			// }
+      alert(resp)
+        if(resp == 1){
+            alert_toast('Data successfully saved',"success");
+            setTimeout(function(){
+              location.href = 'index.php?page=parcel_list';
+            },2000)
+
+        }
+			}
+		})
+
          if($('#tAmount').length > 0)
          $('#tAmount').text(parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
   }

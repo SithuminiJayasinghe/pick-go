@@ -89,5 +89,29 @@ Class Action {
 			return 1;  
 	}
 
+	function get_distance(){
+			extract($_POST);
+			$data = array();
+			$parcel = $this->db->query("select * from distance_matrix where city_1 = $city_a and city_2 = $city_b ");
+
+			if($parcel->num_rows > 0){
+				while($row = $parcel->fetch_assoc()){
+					$data[] = $row;
+				}
+			}else{
+
+				$parcel2 = $this->db->query("select * from distance_matrix where city_2 = $city_a and city_1 = $city_b ");
+				if($parcel2->num_rows > 0){
+					while($row = $parcel2->fetch_assoc()){
+						$data[] = $row;
+					}
+				}
+			}	
+			
+			return json_encode($data);
+			
+
+	}
+
 
 }

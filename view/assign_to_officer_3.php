@@ -1,4 +1,4 @@
-<?php if(!isset($conn)){ include 'db_connect.php'; } ?>
+<?php if(!isset($conn)){ include '../model/db_connect.php'; } ?>
 <style>
   textarea{
     resize: none;
@@ -8,18 +8,17 @@
 	<div class="card card-outline card-primary">
 		<div class="card-body">
 			<form action="" id="manage-parcel">
-        <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+      <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
         <div id="msg" class=""></div>
         <div class="row">
           <div class="col-md-6">
               <h4>Assign Pickup</h4>
-
               <br>
               <div class="col-sm-6 form-group ">
                 <label for="" class="control-label">Assign to Officer</label>
                 <div class="form-group">
                   <div class="form-group" id="tbi-field">
-                    <select name="recipient_nearest_center" id="recipient_nearest_center" class="form-control select2">
+                    <select name="assigned_officer" id="assigned_officer" class="form-control select2">
                       <option value=""></option>
                         <?php 
                           $branches = $conn->query("SELECT * FROM systemusers where type=2 ");
@@ -34,15 +33,15 @@
 
               <div class="form-group">
                 <label for="" class="control-label">Pickup date</label>
-                <input type="date" name="assigned_pickup_date" id="" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_date) ? $assigned_pickup_date : '' ?>" required>
+                <input type="date" name="assigned_pickup_date" id="assigned_pickup_date" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_date) ? $assigned_pickup_date : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Pickup time: From</label>
-                <input type="time" name="assigned_pickup_time_from" id="" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_time_from) ? $assigned_pickup_time_from : '' ?>" required>
+                <input type="time" name="assigned_pickup_time_from" id="assigned_pickup_time_from" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_time_from) ? $assigned_pickup_time_from : '' ?>" >
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Pickup time: To</label>
-                <input type="time" name="assigned_pickup_time_to" id="" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_time_to) ? $assigned_pickup_time_to : '' ?>" required>
+                <input type="time" name="assigned_pickup_time_to" id="assigned_pickup_time_to" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_time_to) ? $assigned_pickup_time_to : '' ?>" >
               </div>
 
 
@@ -222,13 +221,14 @@
 	$('#manage-parcel').submit(function(e){
 		e.preventDefault()
 		start_load()
-    if($('#parcel-items tbody tr').length <= 0){
-      alert_toast("Please add atleast 1 parcel information.","error")
-      end_load()
-      return false;
-    }
+    // if($('#parcel-items tbody tr').length <= 0){
+    //   alert_toast("Please add atleast 1 parcel information.","error")
+    //   end_load()
+    //   return false;
+    // }
+   
 		$.ajax({
-			url:'controller/ajax.php?action=save_parcel',
+			url:'../controller/ajax.php?action=update_parcel',
 			data: new FormData($(this)[0]),
 		    cache: false,
 		    contentType: false,
@@ -236,6 +236,7 @@
 		    method: 'POST',
 		    type: 'POST',
 			success:function(resp){
+
 			// if(resp){
       //       resp = JSON.parse(resp)
       //       if(resp.status == 1){
@@ -244,10 +245,11 @@
       //         var nw = window.open('print_pdets.php?ids='+resp.ids,"_blank","height=700,width=900")
       //       }
 			// }
+      end_load()
         if(resp == 1){
-            alert_toast('Data successfully saved',"success");
+            alert_toast('Data successfully updated.',"success");
             setTimeout(function(){
-              location.href = 'index.php?page=parcel_list';
+              location.href = 'index.php?page=assign_to_officer';
             },2000)
 
         }

@@ -83,10 +83,24 @@ Class Action {
 
 	function update_parcel(){
 		extract($_POST);
-		$update = $this->db->query("UPDATE parcels set status= $status where id = $id");
-		$save = $this->db->query("INSERT INTO parcel_tracks set status= $status , parcel_id = $id");
-		if($update && $save)
-			return 1;  
+		$data = "";
+		foreach($_POST as $key => $val){
+			if(!in_array($key, array('id')) && !is_numeric($key)){
+				if(empty($data)){
+					$data .= " $key='$val' ";
+				}else{
+					$data .= ", $key='$val' ";
+				}
+			}
+		}
+		
+		if($save[] = $this->db->query("UPDATE goods set $data where good_id = $id"))
+					$ids[] = $id;
+		
+		if(isset($save) && isset($ids)){
+			// return json_encode(array('ids'=>$ids,'status'=>1));
+			return 1;
+		}
 	}
 
 	function get_distance(){

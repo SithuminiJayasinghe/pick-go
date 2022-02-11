@@ -128,11 +128,11 @@
               </div>
 
               <div class="form-group">
-                <label for="" class="control-label">Available date for pickup</label>
+                <label for="" class="control-label">Available date for delivery</label>
                 <input type="date" name="recipient_available_date" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_available_date) ? $recipient_available_date : '' ?>" required>
               </div>
               <div class="form-group">
-                <label for="" class="control-label">Available time for pickup</label>
+                <label for="" class="control-label">Available time for delivery</label>
                 <input type="time" placeholder="From" name="recipient_available_time_from" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_available_time_from) ? $recipient_available_time_from : '' ?>" required>
                 <br>
                 <input type="time" placeholder="To" name="recipient_available_time_to" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_available_time_to) ? $recipient_available_time_to : '' ?>" required>
@@ -146,6 +146,46 @@
           </div>
         </div>
         <hr>
+
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-end">
+          <label for="" class="control-label">Item name</label>
+                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-end">
+          <label for="" class="control-label">Item type</label>
+                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-end">
+          <label for="" class="control-label">Item weight</label>
+                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-end">
+          <label for="" class="control-label">Item height</label>
+                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-end">
+          <label for="" class="control-label">Item length</label>
+                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-end">
+          <label for="" class="control-label">Item width</label>
+                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-end">
+          <label for="" class="control-label">Courier price</label>
+                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+          </div>
+
+
+        </div>
+        
      
         <h4>Item Information</h4>
         <table class="table table-bordered" id="parcel-items">

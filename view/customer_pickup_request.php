@@ -148,47 +148,45 @@
         <hr>
 
         <div class="row">
-          <div class="col-md-12 d-flex justify-content-end">
-          <label for="" class="control-label">Item name</label>
-                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
+          <div class="col-md-6">
+              <h4>Item Information</h4>
+              <div class="form-group">
+                <label for="" class="control-label">Item Name</label>
+                <input type="text" name="good_name" id="" class="form-control form-control-sm" value="<?php echo isset($good_name) ? $good_name : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">Item Type</label>
+                <input type="text" name="good_type_id" id="" class="form-control form-control-sm" value="<?php echo isset($good_type_id) ? $good_type_id : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">Item Weight</label>
+                <input type="text" name="weight" id="" class="form-control form-control-sm" value="<?php echo isset($weight) ? $weight : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">Item Height</label>
+                <input type="text" name="height" id="" class="form-control form-control-sm" value="<?php echo isset($height) ? $height : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">Item Length</label>
+                <input type="text" name="length" id="" class="form-control form-control-sm" value="<?php echo isset($length) ? $length : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">Item Width</label>
+                <input type="text" name="width" id="" class="form-control form-control-sm" value="<?php echo isset($width) ? $width : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">Courier Price</label>
+                <input type="text" name="price" id="" class="form-control form-control-sm" value="<?php echo isset($price) ? $price : '' ?>" required>
+              </div>
+
+              
           </div>
-
-          <div class="col-md-12 d-flex justify-content-end">
-          <label for="" class="control-label">Item type</label>
-                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
-          </div>
-
-          <div class="col-md-12 d-flex justify-content-end">
-          <label for="" class="control-label">Item weight</label>
-                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
-          </div>
-
-          <div class="col-md-12 d-flex justify-content-end">
-          <label for="" class="control-label">Item height</label>
-                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
-          </div>
-
-          <div class="col-md-12 d-flex justify-content-end">
-          <label for="" class="control-label">Item length</label>
-                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
-          </div>
-
-          <div class="col-md-12 d-flex justify-content-end">
-          <label for="" class="control-label">Item width</label>
-                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
-          </div>
-
-          <div class="col-md-12 d-flex justify-content-end">
-          <label for="" class="control-label">Courier price</label>
-                <input type="text" name="recipient_remarks" id="recipient_remarks" class="form-control form-control-sm" value="<?php echo isset($recipient_remarks) ? $recipient_remarks : '' ?>" required>
-          </div>
-
-
+         
         </div>
         
      
-        <h4>Item Information</h4>
-        <table class="table table-bordered" id="parcel-items">
+        <!-- <h4>Item Information</h4> -->
+        <!-- <table class="table table-bordered" id="parcel-items">
           <thead>
             <tr>            
               <th>Weight</th>
@@ -220,14 +218,14 @@
             <th></th>
           </tfoot>
               <?php endif; ?>
-        </table>
-              <?php if(!isset($id)): ?>
+        </table> -->
+              <!-- <?php if(!isset($id)): ?>
         <div class="row">
           <div class="col-md-12 d-flex justify-content-end">
             <button  class="btn btn-sm btn-primary bg-gradient-primary" type="button" id="new_parcel"><i class="fa fa-item"></i> Add Item</button>
           </div>
         </div>
-              <?php endif; ?>
+              <?php endif; ?> -->
       </form>
   	</div>
   	<div class="card-footer border-top border-info">
@@ -238,7 +236,7 @@
   	</div>
 	</div>
 </div>
-<div id="ptr_clone" class="d-none">
+<!-- <div id="ptr_clone" class="d-none">
   <table>
     <tr>
         <td><input type="text" name='weight[]' required></td>
@@ -249,7 +247,7 @@
         <td><button class="btn btn-sm btn-danger" type="button" onclick="$(this).closest('tr').remove() && calc()"><i class="fa fa-times"></i></button></td>
       </tr>
   </table>
-</div>
+</div> -->
 <script>
   $('#dtype').change(function(){
       if($(this).prop('checked') == true){
@@ -279,11 +277,11 @@
 	$('#manage-parcel').submit(function(e){
 		e.preventDefault()
 		start_load()
-    if($('#parcel-items tbody tr').length <= 0){
-      alert_toast("Please add atleast 1 parcel information.","error")
-      end_load()
-      return false;
-    }
+    // if($('#parcel-items tbody tr').length <= 0){
+    //   alert_toast("Please add atleast 1 parcel information.","error")
+    //   end_load()
+    //   return false;
+    // }
 		$.ajax({
 			url:'../controller/ajax.php?action=save_parcel',
 			data: new FormData($(this)[0]),
@@ -302,6 +300,7 @@
       //       }
 			// }
       // alert(resp)
+      end_load()
         if(resp == 1){
             alert_toast('Data successfully saved',"success");
             setTimeout(function(){
@@ -375,7 +374,7 @@
       //         var nw = window.open('print_pdets.php?ids='+resp.ids,"_blank","height=700,width=900")
       //       }
 			// }
-      alert(resp)
+      // alert(resp)
         if(resp == 1){
             alert_toast('Data successfully saved',"success");
             setTimeout(function(){

@@ -71,6 +71,7 @@ Class Action {
 				$data .= ", reference_number='$ref' ";
 				if($save[] = $this->db->query("INSERT INTO goods set $data"))
 					$ids[]= $this->db->insert_id;
+					
 			}else{
 				if($save[] = $this->db->query("UPDATE goods set $data where id = $id"))
 					$ids[] = $id;

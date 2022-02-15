@@ -160,7 +160,7 @@
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Item Weight</label>
-                <input type="text" name="weight" id="" class="form-control form-control-sm" value="<?php echo isset($weight) ? $weight : '' ?>" required>
+                <input type="text" name="weight" id="weight" onkeyup="getDistance()" class="form-control form-control-sm" value="<?php echo isset($weight) ? $weight : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Item Height</label>
@@ -172,12 +172,13 @@
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Item Width</label>
-                <input type="text" name="width" id="" class="form-control form-control-sm" value="<?php echo isset($width) ? $width : '' ?>" required>
+                <input type="text" name="width" id=""  class="form-control form-control-sm" value="<?php echo isset($width) ? $width : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Courier Price</label>
-                <input type="text" name="price" id="" class="form-control form-control-sm" value="<?php echo isset($price) ? $price : '' ?>" required>
+                <input type="text" name="price" id="price" class="form-control form-control-sm" value="<?php echo isset($price) ? $price : '' ?>" required>
               </div>
+
 
               
           </div>
@@ -304,7 +305,7 @@
         if(resp == 1){
             alert_toast('Data successfully saved',"success");
             setTimeout(function(){
-              location.href = 'index.php?page=parcel_list';
+              location.href = 'index.php?page=request_success';
             },2000)
 
         }
@@ -324,6 +325,7 @@
   function getDistance(){
     var city_a = $('#sender_nearest_city').val();
     var city_b = $('#recipient_nearest_city').val();
+    var weight = $('#weight').val();
     var total = 0.00;
     $.ajax({
 			url:'../controller/ajax.php?action=get_distance',
@@ -338,8 +340,10 @@
 						if(Object.keys(resp).length > 0){
 
               // alert(resp[0].distance);
-              total = resp[0].distance * 5;
-              $('#tAmount').text(parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
+              // alert(weight);
+              total = (resp[0].distance * 1 ) + ( weight * 100 );
+              document.getElementById("price").value = parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2});
+              // $('#tAmount').text(parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
 		
 						}
 			}

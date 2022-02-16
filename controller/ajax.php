@@ -15,6 +15,21 @@ if($action == 'logout'){
 	if($logout)
 		echo $logout;
 }
+if($action == 'save_parcel'){
+	$save = $crud->save_parcel();
+	if($save)
+		echo $save;
+}
+if($action == 'update_parcel'){
+	$save = $crud->update_parcel();
+	if($save)
+		echo $save;
+}
+if($action == 'get_distance'){
+	$get = $crud->get_distance();
+	if($get)
+		echo $get;
+}
 
 
 ob_end_flush();

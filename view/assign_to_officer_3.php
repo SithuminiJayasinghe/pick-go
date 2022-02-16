@@ -43,6 +43,8 @@
                 <label for="" class="control-label">Pickup time: To</label>
                 <input type="time" name="assigned_pickup_time_to" id="assigned_pickup_time_to" class="form-control form-control-sm" value="<?php echo isset($assigned_pickup_time_to) ? $assigned_pickup_time_to : '' ?>" >
               </div>
+              <input type="hidden" name="status_id" id="status_id" class="form-control form-control-sm" value="<?php echo isset($status_id) ? $status_id : 1 ?>" >
+
 
 
               <!-- <div class="form-group">

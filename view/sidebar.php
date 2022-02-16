@@ -51,7 +51,7 @@
           </li>
           <?php endif; ?>
 
-          <?php if($_SESSION['login_type'] == 1): ?>
+          <?php if($_SESSION['login_type'] == 1 ): ?>
           <li class="nav-item">
             <a href="#" class="nav-link nav-edit_parcel">
               <i class="nav-icon fas fa-boxes"></i>
@@ -67,7 +67,12 @@
                   <p> Pickup Request </p>
                 </a>
               </li>
-            
+              <li class="nav-item">
+                <a href="./index.php?page=assign_to_officer" class="nav-link nav-new tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p> View Assigned Requests</p>
+                </a>
+              </li>
             </ul>
           </li>
           <?php endif; ?>
@@ -84,7 +89,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.php?page=assign_to_officer" class="nav-link nav-new tree-item">
+                <a href="./index.php?page=view_assigned_requests" class="nav-link nav-new tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p> View Assigned Requests</p>
                 </a>

@@ -43,7 +43,8 @@
 						$where .= "sender_nearest_center = {$_SESSION['login_center_id'] } ";
 					}
 
-					$qry = $conn->query("SELECT * from goods where status_id is NULL order by date_created DESC");
+					$staffId = (int)$_SESSION['login_system_user_id'];
+					$qry = $conn->query("SELECT * from goods where assigned_officer=$staffId order by date_created DESC");
 					while($row= $qry->fetch_assoc()):
 					?>
 					<tr>

@@ -249,7 +249,9 @@
         if(resp == 1){
             alert_toast('Data successfully updated.',"success");
             setTimeout(function(){
-              location.href = 'index.php?page=assign_to_officer';
+              var assigned_officer = $('#assigned_officer').val();
+              location.href = 'assign_email.php?assigned_officer_id=' + assigned_officer;
+              // location.href = 'index.php?page=assign_to_officer';
             },2000)
 
         }

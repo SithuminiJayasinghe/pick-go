@@ -38,7 +38,6 @@ Class Action {
 
 	function save_parcel(){
 		extract($_POST);
-		// foreach($price as $k => $v){
 			$data = "";
 			foreach($_POST as $key => $val){
 				if(!in_array($key, array('id')) && !is_numeric($key)){
@@ -49,16 +48,7 @@ Class Action {
 					}
 				}
 			}
-			// echo($data);
-			// if(!isset($type)){
-			// 	$data .= ", type='2' ";
-			// }
-				// $data .= ", height='{$height[$k]}' ";
-				// $data .= ", width='{$width[$k]}' ";
-				// $data .= ", length='{$length[$k]}' ";
-				// $data .= ", weight='{$weight[$k]}' ";
-				// $price[$k] = str_replace(',', '', $price[$k]);
-				// $data .= ", price='{$price[$k]}' ";
+	
 			if(empty($id)){
 				$i = 0;
 				while($i == 0){
@@ -79,7 +69,7 @@ Class Action {
 		// }
 		if(isset($save) && isset($ids)){
 			// return json_encode(array('ids'=>$ids,'status'=>1));
-			return 1;
+			return $ref;
 		}
 	}
 

@@ -8,7 +8,16 @@ require 'vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
-$ref_id = $_GET['ref_id'];
+
+if(!isset($conn)){ include '../model/db_connect.php'; }
+$offId = (int)$_GET['assigned_officer_id'];
+echo($offId);
+$officer = $conn->query("SELECT * FROM systemusers where system_user_id = $offId");
+$officerEmail= "";
+while($row = $officer->fetch_assoc()):
+    $officerEmail =  $row['email'];
+    echo $row['email'];
+endwhile;
 
 try {
     //Server settings
@@ -23,20 +32,17 @@ try {
 
     //Recipients
     $mail->setFrom('siteservme@gmail.com', 'Pick&Go');
-    $mail->addAddress($_GET['email'] , $_GET['sender_name']);     //Add a recipient
-    $mail->addAddress($_GET['recipient_email'] , $_GET['sender_name']);     //Add a recipient
+    $mail->addAddress($officerEmail, 'Officer');     //Add a recipient
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Pickup Request Confirmation';
-    $mail->Body    = "Dear customer, we received your pickup request. <br> Please find the pickup request details below; <br> Ref ID: .$ref_id.";
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients.';
-
+    $mail->Body    = 'Dear customer, we received your pickup request. <br> Please find the pickup request details below;';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
     echo ($_GET['email'] ); 
     echo 'Message has been sent';
-    // var $refId = $ref_id;
-    header("Location: index.php?page=request_success&ref_id=$ref_id");
+    header("Location: index.php?page=assign_to_officer");
     
     
 } catch (Exception $e) {

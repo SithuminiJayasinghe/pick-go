@@ -2,12 +2,19 @@
 <html lang="en">
 <?php 
 session_start();
-include('../model/db_connect.php');
+include('./../model/db_connect.php');
   ob_start();
+  if(!isset($_SESSION['system'])){
+
+    $system = $conn->query("SELECT * FROM system_settings")->fetch_array();
+    foreach($system as $k => $v){
+      $_SESSION['system'][$k] = $v;
+    }
+  }
   ob_end_flush();
 ?>
 <?php 
-if(isset($_SESSION['login_id']))
+if(isset($_SESSION['login_system_user_id']))
 header("location:index.php?page=home");
 
 ?>
@@ -15,6 +22,7 @@ header("location:index.php?page=home");
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
+    <a href="#"><b><?php echo $_SESSION['system']['name'] ?> - Admin</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -37,7 +45,14 @@ header("location:index.php?page=home");
           </div>
         </div>
         <div class="row">
-          
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
           <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
@@ -45,6 +60,7 @@ header("location:index.php?page=home");
           <!-- /.col -->
         </div>
       </form>
+      
     </div>
     <!-- /.login-card-body -->
   </div>

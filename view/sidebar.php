@@ -4,7 +4,7 @@
         <?php if($_SESSION['login_type'] == 1): ?>
         <h3 class="text-center p-0 m-0"><b>ADMIN</b></h3>
         <?php else: ?>
-        <h3 class="text-center p-0 m-0"><b>STAFF</b></h3>
+        <h3 class="text-center p-0 m-0"><b>Customer</b></h3>
         <?php endif; ?>
 
     </a>
@@ -12,45 +12,62 @@
     </div>
     <div class="sidebar pb-4 mb-4">
       <nav class="mt-2">
+        <?php 
+            if($_SESSION['login_type'] == 1) {?>
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item dropdown">
             <a href="./" class="nav-link nav-home">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-home"></i>
               <p>
-                Dashboard
+                Home
               </p>
             </a>
           </li>     
-          <?php if($_SESSION['login_type'] == 1): ?>
-          
-         
-        <?php endif; ?>
           <li class="nav-item">
             <a href="#" class="nav-link nav-edit_parcel">
               <i class="nav-icon fas fa-boxes"></i>
               <p>
-                Test page
+                Orders
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
               <li class="nav-item">
-                <a href="./index.php?page=new" class="nav-link nav-new tree-item">
+                <a href="./index.php?page=parcel_list" class="nav-link nav-parcel_list nav-sall tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Test sub page 1</p>
+                  <p>List All</p>
                 </a>
               </li>
+              <?php 
+              $status_arr = array("Accepted","Dispatched to Center", "Dispatched to Delivery");
+              foreach($status_arr as $k =>$v):
+              ?>
               <li class="nav-item">
-                <a href="./index.php?page=list" class="nav-link nav-list nav-sall tree-item">
+                <a href="./index.php?page=parcel_list&s=<?php echo $k ?>" class="nav-link nav-parcel_list_<?php echo $k ?> tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Test sub page 2</p>
+                  <p><?php echo $v ?></p>
                 </a>
               </li>
-             
+            <?php endforeach; ?>
             </ul>
           </li>
-            
         </ul>
+        <?php }
+         if($_SESSION['login_type'] == 2) {
+        ?>
+          <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
+          
+          <li class="nav-item dropdown">
+            <a href="./" class="nav-link nav-home">
+              <i class="nav-icon fas fa-box"></i>
+              <p>
+                Order List
+              </p>
+            </a>
+          </li>     
+        </ul>
+        <?php } ?>
       </nav>
     </div>
   </aside>

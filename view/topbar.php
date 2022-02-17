@@ -7,7 +7,9 @@
         <a class="nav-link" data-widget="pushmenu" href="" role="button"><i class="fas fa-bars"></i></a>
       </li>
     <?php endif; ?>
-      
+      <li>
+        <a class="nav-link text-white"  href="./" role="button"> <large><b><?php echo $_SESSION['system']['name'] ?></b></large></a>
+      </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">

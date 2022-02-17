@@ -15,7 +15,11 @@
               <h4>Sender's Information</h4>
               <div class="form-group">
                 <label for="" class="control-label">Name</label>
+<<<<<<< HEAD
                 <input type="text" name="sender_name" id="" class="form-control form-control-sm" value="<?php echo isset($sender_name) ? $sender_name : '' ?>" required>
+=======
+                <input type="text" name="sender_name" id="sender_name" class="form-control form-control-sm" value="<?php echo isset($sender_name) ? $sender_name : '' ?>" required>
+>>>>>>> origin/qa
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Address</label>
@@ -40,7 +44,11 @@
               
               <div class="form-group">
                 <label for="" class="control-label">Email</label>
+<<<<<<< HEAD
                 <input type="text" name="sender_email" id="" class="form-control form-control-sm" value="<?php echo isset($sender_email) ? $sender_email : '' ?>" required>
+=======
+                <input type="text" name="sender_email" id="sender_email" class="form-control form-control-sm" value="<?php echo isset($sender_email) ? $sender_email : '' ?>" required>
+>>>>>>> origin/qa
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Contact No:</label>
@@ -105,7 +113,11 @@
 
               <div class="form-group">
                 <label for="" class="control-label">Email</label>
+<<<<<<< HEAD
                 <input type="text" name="recipient_email" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_email) ? $recipient_email : '' ?>" required>
+=======
+                <input type="text" name="recipient_email" id="recipient_email" class="form-control form-control-sm" value="<?php echo isset($recipient_email) ? $recipient_email : '' ?>" required>
+>>>>>>> origin/qa
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Contact No:</label>
@@ -176,7 +188,12 @@
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Courier Price</label>
+<<<<<<< HEAD
                 <input type="text" name="price" id="price" class="form-control form-control-sm" value="<?php echo isset($price) ? $price : '' ?>" required>
+=======
+                <input type="
+                " name="price" id="price" class="form-control form-control-sm" value="<?php echo isset($price) ? $price : '' ?>" required>
+>>>>>>> origin/qa
               </div>
 
 
@@ -185,6 +202,7 @@
          
         </div>
         
+<<<<<<< HEAD
      
         <!-- <h4>Item Information</h4> -->
         <!-- <table class="table table-bordered" id="parcel-items">
@@ -227,6 +245,8 @@
           </div>
         </div>
               <?php endif; ?> -->
+=======
+>>>>>>> origin/qa
       </form>
   	</div>
   	<div class="card-footer border-top border-info">
@@ -237,6 +257,7 @@
   	</div>
 	</div>
 </div>
+<<<<<<< HEAD
 <!-- <div id="ptr_clone" class="d-none">
   <table>
     <tr>
@@ -249,6 +270,8 @@
       </tr>
   </table>
 </div> -->
+=======
+>>>>>>> origin/qa
 <script>
   $('#dtype').change(function(){
       if($(this).prop('checked') == true){
@@ -277,12 +300,19 @@
   })
 	$('#manage-parcel').submit(function(e){
 		e.preventDefault()
+<<<<<<< HEAD
 		start_load()
     // if($('#parcel-items tbody tr').length <= 0){
     //   alert_toast("Please add atleast 1 parcel information.","error")
     //   end_load()
     //   return false;
     // }
+=======
+		start_load();
+    var sender_email = $('#sender_email').val();
+    var sender_name = $('#sender_name').val();
+    var recipient_email = $('#recipient_email').val();
+>>>>>>> origin/qa
 		$.ajax({
 			url:'../controller/ajax.php?action=save_parcel',
 			data: new FormData($(this)[0]),
@@ -292,6 +322,7 @@
 		    method: 'POST',
 		    type: 'POST',
 			success:function(resp){
+<<<<<<< HEAD
 			// if(resp){
       //       resp = JSON.parse(resp)
       //       if(resp.status == 1){
@@ -309,6 +340,17 @@
             },2000)
 
         }
+=======
+        if(resp > 1){
+          start_load();
+            alert_toast('Data successfully saved',"success");
+            setTimeout(function(){
+              location.href = 'email.php?email=' + sender_email + '&sender_name=' + sender_name + '&recipient_email=' + recipient_email + '&ref_id=' + resp;
+            },2000)
+
+        }
+        end_load();
+>>>>>>> origin/qa
 			}
 		})
 	})
@@ -338,9 +380,12 @@
 			success:function(resp){
         resp = JSON.parse(resp)
 						if(Object.keys(resp).length > 0){
+<<<<<<< HEAD
 
               // alert(resp[0].distance);
               // alert(weight);
+=======
+>>>>>>> origin/qa
               total = (resp[0].distance * 1 ) + ( weight * 100 );
               document.getElementById("price").value = parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2});
               // $('#tAmount').text(parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
@@ -370,6 +415,7 @@
 		    method: 'POST',
 		    type: 'POST',
 			success:function(resp){
+<<<<<<< HEAD
 			// if(resp){
       //       resp = JSON.parse(resp)
       //       if(resp.status == 1){
@@ -379,6 +425,8 @@
       //       }
 			// }
       // alert(resp)
+=======
+>>>>>>> origin/qa
         if(resp == 1){
             alert_toast('Data successfully saved',"success");
             setTimeout(function(){

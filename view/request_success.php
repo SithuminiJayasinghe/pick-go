@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <>
 body {
     background: #ddd3;
@@ -201,13 +202,19 @@ body {
 #progressbar li.active:after {
     background: rgb(252, 103, 49)
 }
+=======
+>>>>>>> origin/qa
 
 <div class="card">
     <div class="title">Purchase Reciept</div>
     <div class="info">
         <div class="row">
             <div class="col-7"> <span id="heading">Date</span><br> <span id="details">10 October 2018</span> </div>
+<<<<<<< HEAD
             <div class="col-5 pull-right"> <span id="heading">Order No.</span><br> <span id="details">012j1gvs356c</span> </div>
+=======
+            <div class="col-5 pull-right"> <span id="heading">Ref No.</span><br> <span id="details"><?php echo $_GET['ref_id'] ?></span> </div>
+>>>>>>> origin/qa
         </div>
     </div>
     <div class="pricing">

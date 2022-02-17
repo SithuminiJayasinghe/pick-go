@@ -48,7 +48,6 @@ Class Action {
 					}
 				}
 			}
-	
 			if(empty($id)){
 				$i = 0;
 				while($i == 0){
@@ -66,9 +65,7 @@ Class Action {
 				if($save[] = $this->db->query("UPDATE goods set $data where id = $id"))
 					$ids[] = $id;
 			}
-		// }
 		if(isset($save) && isset($ids)){
-			// return json_encode(array('ids'=>$ids,'status'=>1));
 			return $ref;
 		}
 	}
@@ -90,7 +87,6 @@ Class Action {
 					$ids[] = $id;
 		
 		if(isset($save) && isset($ids)){
-			// return json_encode(array('ids'=>$ids,'status'=>1));
 			return 1;
 		}
 	}

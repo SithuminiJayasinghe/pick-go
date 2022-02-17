@@ -17,7 +17,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'siteservme@gmail.com';                     //SMTP username
-    $mail->Password   = 'Qwerty1234.';                               //SMTP password
+    $mail->Password   = 'Qwerty@1234.';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -28,7 +28,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Pickup Request Confirmation';
-    $mail->Body    = "Dear customer, we received your pickup request. <br> Please find the pickup request details below; <br> Ref ID: .$ref_id.";
+    $mail->Body    = "Dear customer, we received your pickup request. <br> Please find the pickup request details below; <br> Tracking ID: .$ref_id.";
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients.';
 
 

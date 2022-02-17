@@ -5,7 +5,7 @@
   }
 </style>
 <div class="col-lg-12">
-	<div class="card card-outline card-primary">
+	<div class="card card-outline card-primary" >
 		<div class="card-body">
 			<form action="" id="manage-parcel">
         <input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
@@ -190,7 +190,7 @@
   	</div>
   	<div class="card-footer border-top border-info">
   		<div class="d-flex w-100 justify-content-center align-items-center">
-  			<button class="btn btn-flat  bg-gradient-primary mx-2" form="manage-parcel">Save</button>
+  			<button class="btn btn-flat mx-2" form="manage-parcel" style="background-color: #F57600;">Save</button>
   			<a class="btn btn-flat bg-gradient-secondary mx-2" href="./index.php?page=parcel_list">Cancel</a>
   		</div>
   	</div>
@@ -220,7 +220,6 @@
         val = val > 0 ? parseFloat(val).toLocaleString("en-US") : 0;
         $(this).val(val)
     })
-
   })
 	$('#manage-parcel').submit(function(e){
 		e.preventDefault()
@@ -243,7 +242,6 @@
             setTimeout(function(){
               location.href = 'email.php?email=' + sender_email + '&sender_name=' + sender_name + '&recipient_email=' + recipient_email + '&ref_id=' + resp;
             },2000)
-
         }
         end_load();
 			}

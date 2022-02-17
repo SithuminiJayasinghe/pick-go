@@ -5,7 +5,7 @@ $officer = $conn->query("SELECT * FROM goods where reference_number = $ref_id");
 $good_name= "";
 while($row = $officer->fetch_assoc()):
     $good_name =  $row['good_name'];
-    $recipient_address =  $row['recipient_address'];
+    $sender_address =  $row['sender_address'];
 endwhile;
 ?>
 
@@ -18,8 +18,8 @@ endwhile;
                 <div class="col-5 pull-right"> <span id="heading"></span><span id="details"><?php echo $good_name ?></span> </div>  
              </div>
               <div class="form-group">
-                <label for="" class="control-label">Recipient address</label>
-                <div class="col-5 pull-right"> <span id="heading"></span><span id="details"><?php echo $recipient_address ?></span> </div>  
+                <label for="" class="control-label">Sender's address</label>
+                <div class="col-5 pull-right"> <span id="heading"></span><span id="details"><?php echo $sender_address ?></span> </div>  
             </div>
               <div class="form-group">
                 <label for="" class="control-label">Tracking ID</label>

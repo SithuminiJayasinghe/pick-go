@@ -21,7 +21,7 @@ header("location:index.php?page=home");
     <div class="card-body login-card-body">
       <form action="" id="login-form">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" required placeholder="Email">
+          <input type="email" class="form-control" name="email" required placeholder="User Name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -40,13 +40,8 @@ header("location:index.php?page=home");
           
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-
-          <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
           </div>
-          <!-- /.col -->
         </div>
       </form>
     </div>
@@ -62,7 +57,7 @@ header("location:index.php?page=home");
     if($(this).find('.alert-danger').length > 0 )
       $(this).find('.alert-danger').remove();
     $.ajax({
-      url:'../controller/ajax.php?action=login',
+      url:'../controller/ajax.php?action=register',
       method:'POST',
       data:$(this).serialize(),
       error:err=>{

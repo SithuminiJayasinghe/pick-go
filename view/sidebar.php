@@ -48,6 +48,15 @@
               </li>
             
             </ul>
+
+            <li class="nav-item dropdown">
+            <a href="./index.php?page=track" class="nav-link nav-track">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Track Parcel
+              </p>
+            </a>
+          </li>  
           </li>
           <?php endif; ?>
 
@@ -69,6 +78,14 @@
               </li>
             
             </ul>
+            <li class="nav-item dropdown">
+            <a href="./index.php?page=track" class="nav-link nav-track">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Track Parcel
+              </p>
+            </a>
+          </li>  
           </li>
           <?php endif; ?>
 

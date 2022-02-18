@@ -1,4 +1,6 @@
 <?php
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -8,7 +10,6 @@ require 'vendor/autoload.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
-$ref_id = $_GET['ref_id'];
 
 try {
     //Server settings
@@ -22,24 +23,25 @@ try {
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('siteservme@gmail.com', 'Pick&Go');
-    $mail->addAddress($_GET['email'] , $_GET['sender_name']);     //Add a recipient
-    $mail->addAddress($_GET['recipient_email'] , $_GET['sender_name']);     //Add a recipient
+    $mail->setFrom('siteservme@gmail.com', 'Mailer');
+    $mail->addAddress('dechathuranga@gmail.com', 'Joe User');     //Add a recipient
+   //  $mail->addAddress('ellen@example.com');               //Name is optional
+   //  $mail->addReplyTo('info@example.com', 'Information');
+   //  $mail->addCC('cc@example.com');
+   //  $mail->addBCC('bcc@example.com');
+
+    //Attachments
+   //  $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+   //  $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Pickup Request Confirmation';
-    $mail->Body    = "Dear customer, we received your pickup request. <br> Please find the pickup request details below; <br> Ref ID: .$ref_id.";
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients.';
-
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo ($_GET['email'] ); 
     echo 'Message has been sent';
-    // var $refId = $ref_id;
-    header("Location: index.php?page=request_success&ref_id=$ref_id");
-    
-    
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
-?>

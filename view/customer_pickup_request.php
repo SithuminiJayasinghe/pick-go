@@ -15,7 +15,7 @@
               <h4>Sender's Information</h4>
               <div class="form-group">
                 <label for="" class="control-label">Name</label>
-                <input type="text" name="sender_name" id="sender_name" class="form-control form-control-sm" value="<?php echo isset($sender_name) ? $sender_name : '' ?>" required>
+                <input type="text" name="sender_name" id="" class="form-control form-control-sm" value="<?php echo isset($sender_name) ? $sender_name : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Address</label>
@@ -40,7 +40,7 @@
               
               <div class="form-group">
                 <label for="" class="control-label">Email</label>
-                <input type="text" name="sender_email" id="sender_email" class="form-control form-control-sm" value="<?php echo isset($sender_email) ? $sender_email : '' ?>" required>
+                <input type="text" name="sender_email" id="" class="form-control form-control-sm" value="<?php echo isset($sender_email) ? $sender_email : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Contact No:</label>
@@ -105,7 +105,7 @@
 
               <div class="form-group">
                 <label for="" class="control-label">Email</label>
-                <input type="text" name="recipient_email" id="recipient_email" class="form-control form-control-sm" value="<?php echo isset($recipient_email) ? $recipient_email : '' ?>" required>
+                <input type="text" name="recipient_email" id="" class="form-control form-control-sm" value="<?php echo isset($recipient_email) ? $recipient_email : '' ?>" required>
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Contact No:</label>
@@ -176,8 +176,7 @@
               </div>
               <div class="form-group">
                 <label for="" class="control-label">Courier Price</label>
-                <input type="
-                " name="price" id="price" class="form-control form-control-sm" value="<?php echo isset($price) ? $price : '' ?>" required>
+                <input type="text" name="price" id="price" class="form-control form-control-sm" value="<?php echo isset($price) ? $price : '' ?>" required>
               </div>
 
 
@@ -186,6 +185,48 @@
          
         </div>
         
+     
+        <!-- <h4>Item Information</h4> -->
+        <!-- <table class="table table-bordered" id="parcel-items">
+          <thead>
+            <tr>            
+              <th>Weight</th>
+              <th>Height</th>
+              <th>Length</th>
+              <th>Width</th>
+              <th>Price</th>
+              <?php if(!isset($id)): ?>
+              <th></th>
+            <?php endif; ?>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name='weight[]' value="<?php echo isset($weight) ? $weight :'' ?>" required></td>
+              <td><input type="text" name='height[]' value="<?php echo isset($height) ? $height :'' ?>" required></td>
+              <td><input type="text" name='length[]' value="<?php echo isset($length) ? $length :'' ?>" required></td>
+              <td><input type="text" name='width[]' onkeypress="getDistance()" value="<?php echo isset($width) ? $width :'' ?>" required></td>
+              <td><input type="text" class="text-right number" name='price[]' value="<?php echo isset($price) ? $price :'' ?>" required></td>
+              <?php if(!isset($id)): ?>
+              <td><button class="btn btn-sm btn-danger" type="button" onclick="$(this).closest('tr').remove() && calc()"><i class="fa fa-times"></i></button></td>
+              <?php endif; ?>
+            </tr>
+          </tbody>
+              <?php if(!isset($id)): ?>
+          <tfoot>
+            <th colspan="4" class="text-right">Total</th>
+            <th class="text-right" id="tAmount">0.00</th>
+            <th></th>
+          </tfoot>
+              <?php endif; ?>
+        </table> -->
+              <!-- <?php if(!isset($id)): ?>
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-end">
+            <button  class="btn btn-sm btn-primary bg-gradient-primary" type="button" id="new_parcel"><i class="fa fa-item"></i> Add Item</button>
+          </div>
+        </div>
+              <?php endif; ?> -->
       </form>
   	</div>
   	<div class="card-footer border-top border-info">
@@ -196,6 +237,18 @@
   	</div>
 	</div>
 </div>
+<!-- <div id="ptr_clone" class="d-none">
+  <table>
+    <tr>
+        <td><input type="text" name='weight[]' required></td>
+        <td><input type="text" name='height[]' required></td>
+        <td><input type="text" name='length[]' required></td>
+        <td><input type="text" name='width[]' required></td>
+        <td><input type="text" class="text-right number" name='price[]'  required></td>
+        <td><button class="btn btn-sm btn-danger" type="button" onclick="$(this).closest('tr').remove() && calc()"><i class="fa fa-times"></i></button></td>
+      </tr>
+  </table>
+</div> -->
 <script>
   $('#dtype').change(function(){
       if($(this).prop('checked') == true){
@@ -224,10 +277,12 @@
   })
 	$('#manage-parcel').submit(function(e){
 		e.preventDefault()
-		start_load();
-    var sender_email = $('#sender_email').val();
-    var sender_name = $('#sender_name').val();
-    var recipient_email = $('#recipient_email').val();
+		start_load()
+    // if($('#parcel-items tbody tr').length <= 0){
+    //   alert_toast("Please add atleast 1 parcel information.","error")
+    //   end_load()
+    //   return false;
+    // }
 		$.ajax({
 			url:'../controller/ajax.php?action=save_parcel',
 			data: new FormData($(this)[0]),
@@ -237,15 +292,23 @@
 		    method: 'POST',
 		    type: 'POST',
 			success:function(resp){
-        if(resp > 1){
-          start_load();
+			// if(resp){
+      //       resp = JSON.parse(resp)
+      //       if(resp.status == 1){
+      //         alert_toast('Data successfully saved',"success");
+      //         end_load()
+      //         var nw = window.open('print_pdets.php?ids='+resp.ids,"_blank","height=700,width=900")
+      //       }
+			// }
+      // alert(resp)
+      end_load()
+        if(resp == 1){
             alert_toast('Data successfully saved',"success");
             setTimeout(function(){
-              location.href = 'email.php?email=' + sender_email + '&sender_name=' + sender_name + '&recipient_email=' + recipient_email + '&ref_id=' + resp;
+              location.href = 'index.php?page=request_success';
             },2000)
 
         }
-        end_load();
 			}
 		})
 	})
@@ -275,6 +338,9 @@
 			success:function(resp){
         resp = JSON.parse(resp)
 						if(Object.keys(resp).length > 0){
+
+              // alert(resp[0].distance);
+              // alert(weight);
               total = (resp[0].distance * 1 ) + ( weight * 100 );
               document.getElementById("price").value = parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2});
               // $('#tAmount').text(parseFloat(total).toLocaleString('en-US',{style:'decimal',maximumFractionDigits:2,minimumFractionDigits:2}))
@@ -304,6 +370,15 @@
 		    method: 'POST',
 		    type: 'POST',
 			success:function(resp){
+			// if(resp){
+      //       resp = JSON.parse(resp)
+      //       if(resp.status == 1){
+      //         alert_toast('Data successfully saved',"success");
+      //         end_load()
+      //         var nw = window.open('print_pdets.php?ids='+resp.ids,"_blank","height=700,width=900")
+      //       }
+			// }
+      // alert(resp)
         if(resp == 1){
             alert_toast('Data successfully saved',"success");
             setTimeout(function(){

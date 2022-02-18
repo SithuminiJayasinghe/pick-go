@@ -30,6 +30,11 @@ if($action == 'get_distance'){
 	if($get)
 		echo $get;
 }
+if($action == 'get_parcel_heistory'){
+	$get = $crud->get_parcel_heistory();
+	if($get)
+		echo $get;
+}
 
 
 ob_end_flush();

@@ -42,6 +42,10 @@ header("location:index.php?page=home");
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
+
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+          </div>
           <!-- /.col -->
         </div>
       </form>
